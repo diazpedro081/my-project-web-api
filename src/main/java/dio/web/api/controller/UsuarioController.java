@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @GetMapping
+    @GetMapping()
     public List<Usuario> getUsers() {
         return usuarioRepository.listAll();
     }
@@ -36,8 +37,13 @@ public class UsuarioController {
         usuarioRepository.deleteByID(id);
     }
 
-    @PostMapping
+    @PostMapping()
     public void postUsers(@RequestBody Usuario usuario){
+        usuarioRepository.save(usuario);
+    }
+
+    @PutMapping()
+    public void PutUsers(@RequestBody Usuario usuario){
         usuarioRepository.save(usuario);
     }
 }
